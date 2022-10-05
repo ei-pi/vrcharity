@@ -9,24 +9,79 @@ body {
 }
 
 header {
+    position: absolute;
+    width: calc(100% - 10px);
     height: 40px;
-    background-image: linear-gradient(180deg, hsl(0, 0%, 80%), hsl(0, 0%, 70%));
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(to bottom, hsl(0, 0%, 80%), hsl(0, 0%, 70%));
     font-family: bungee, Menlo, monospace;
     padding: 0px 5px;
+    z-index: 1;
 }
 
 header>div#link-container {
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
-div#spacer {
-    height: 20px;
+img#logo-faded {
     position: absolute;
+    width: 60%;
+    height: auto;
+    left: -30%;
+    top: 20px;
+    opacity: 2%;
     pointer-events: none;
-    opacity: 0;
+    user-select: none;
+}
+
+img#main-logo {
+    position: relative;
+    width: 50%;
+    height: auto;
+    top: 50px;
+    display: block;
+    margin: 50px auto 30px auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+p#about {
+    position: relative;
+    top: 50px;
+    color: hsl(0, 0%, 90%);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 5%;
+    font-family: "Trebuchet MS", "Lucida Grande", sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+a.header-link {
+    font-family: bungee, Menlo, monospace;
+    color: hsl(0, 0%, 10%);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+div#link-container a:first-of-type {
+    font-family: "Gill Sans", "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    scale: 100% 150%;
+    font-weight: bolder;
+    background-image: linear-gradient(to bottom, hsl(0, 0%, 10%) 0% 50%, hsl(0, 0%, 45%) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent
+}
+
+div#link-container a:last-of-type {
+    justify-self: end;
+    padding: 0 10px 0 0;
 }
 
 @media screen {
@@ -34,11 +89,17 @@ div#spacer {
         height: 40px;
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 800px) {
 
         header,
         header>div#link-container {
             height: 20px;
+            transition: height 0.5s ease-in-out;
+        }
+
+        img#main-logo,
+        p#about {
+            top: 30px;
         }
 
         header>div#link-container {
@@ -56,40 +117,17 @@ div#spacer {
         header.expanded>div#link-container {
             position: absolute;
             width: calc(100% - 20px);
-            height: fit-content;
+            height: 245px;
         }
 
-        header.expanded+div#spacer {
-            position: relative;
+        div#link-container a:first-of-type {
+            font-size: 14px;
         }
 
         a.header-link {
             padding: 3px 0;
         }
     }
-}
-
-img#main-logo {
-    width: 50%;
-    height: auto;
-    display: block;
-    margin: 50px auto 30px auto;
-}
-
-p#about {
-    color: hsl(0, 0%, 90%);
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0 5%;
-    font-family: bungee, Menlo, monospace;
-    font-size: 25px;
-}
-
-a.header-link {
-    font-family: bungee, Menlo, monospace;
-    color: hsl(0, 0%, 10%);
-    text-decoration: none;
-    text-transform: uppercase;
 }
 
 @font-face {
