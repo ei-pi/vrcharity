@@ -1,5 +1,9 @@
 # VR Charity website build changelog
 
+## v0.1.0.3 (10/06/2022)
+- Continued work on the games section
+- Added versions of all images at different resolutions for browsers to pick the most appropriate (not yet working)
+
 ## v0.1.0.2 (10/05/2022)
 - Animated the main logo (fade in + translate)
 - Adjusted some header links' positions

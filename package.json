@@ -1,0 +1,8 @@
+{
+    "name": "vrcharity_website",
+    "description": "A website for VR Charity",
+    "scripts": {
+        "build": "npx parcel build index.html --dist-dir ./build --public-url ./",
+        "host": "npx parcel index.html"
+    }
+}

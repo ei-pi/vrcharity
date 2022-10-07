@@ -88,6 +88,11 @@ div#link-container a:last-of-type {
     right: 10px;
 }
 
+div#games-container {
+    position: relative;
+    top: 50px;
+}
+
 @media screen {
     header>div#link-container {
         height: 40px;
