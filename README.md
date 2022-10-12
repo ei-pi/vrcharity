@@ -1,5 +1,16 @@
 # VR Charity website build changelog
 
+## v0.2.0.0 (10/11/2022)
+- Finished the games section
+- Fixed the multiple-res images
+- Added the parallax scrolling effect
+- Added the news section (with some dummy posts)
+- Added the sponsor section
+- Added a footer
+- Added the donate page
+- Fixed typo
+- Cleaned up some files
+
 ## v0.1.0.3 (10/06/2022)
 - Continued work on the games section
 - Added versions of all images at different resolutions for browsers to pick the most appropriate (not yet working)

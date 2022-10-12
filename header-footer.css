@@ -1,0 +1,145 @@
+header {
+    position: absolute;
+    width: calc(100% - 10px);
+    height: 40px;
+    left: 0;
+    top: 0;
+    background-image: linear-gradient(to bottom, hsl(0, 0%, 80%), hsl(0, 0%, 70%));
+    font-display: fallback;
+    font-family: bungee, Menlo, monospace;
+    padding: 0px 5px;
+    z-index: 1;
+}
+
+header>div#link-container {
+    height: 40px;
+    position: static;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a.header-link {
+    font-display: fallback;
+    font-family: bungee, Menlo, monospace;
+    color: hsl(0, 0%, 10%);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a.header-link:hover {
+    background-color: #0002;
+}
+
+div#link-container a:first-of-type {
+    position: relative;
+    left: 10px;
+    font-family: "Gill Sans", "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    scale: 100% 150%;
+    font-weight: bolder;
+    background-image: linear-gradient(to bottom, hsl(0, 0%, 10%) 0% 50%, hsl(0, 0%, 45%) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+div#link-container a:last-of-type {
+    position: absolute;
+    right: 10px;
+    line-height: 40px;
+}
+
+footer {
+    color: hsl(0, 0%, 90%);
+    padding: 5px;
+    margin: 10px 0 0 0;
+    background-color: hsl(210, 39%, 15%);
+    height: 60px;
+    overflow-y: hidden;
+    display: grid;
+    grid-template: 100% / 1fr 2fr;
+}
+
+div#quick-links {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+}
+
+a.footer-link {
+    padding: 0 5px;
+    font-family: Menlo, monospace;
+    font-weight: bolder;
+    font-synthesis: weight;
+    color: hsl(120, 45%, 50%);
+}
+
+a.footer-link:hover {
+    color: hsl(60, 45%, 50%);
+}
+
+a.footer-link:visited {
+    color: hsl(30, 45%, 50%);
+}
+
+p#info {
+    margin: 0;
+    font-family: Menlo, monospace;
+    font-size: 12px;
+    text-align: right;
+}
+
+@media screen and (max-width: 1000px) {
+    header {
+        height: 20px;
+        width: 100%;
+        overflow: hidden;
+        transition: height 0.5s ease-in-out;
+        padding: 0;
+        width: 100%;
+    }
+
+    header>div#link-container {
+        height: 20px;
+        width: 100%;
+        overflow: hidden;
+        transition: height 0.5s ease-in-out;
+    }
+
+    div#link-container a:first-of-type,
+    div#link-container a:last-of-type {
+        position: initial;
+        right: initial;
+        line-height: initial;
+    }
+
+    img#main-logo,
+    p#about {
+        top: 30px;
+    }
+
+    header>div#link-container {
+        cursor: pointer;
+        flex-direction: column;
+    }
+
+    header.expanded {
+        width: 100%;
+    }
+
+    header.expanded>div#link-container {
+        width: 100%;
+    }
+
+    div#link-container a:first-of-type {
+        font-size: 14px;
+    }
+
+    a.header-link {
+        padding: 3px 0;
+        width: 100%;
+        text-align: center;
+    }
+}

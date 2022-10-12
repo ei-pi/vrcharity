@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A site for registering to VR Charity tournaments.">
     <link href="./style.css" rel="stylesheet" />
+    <link href="./header-footer.css" rel="stylesheet" />
     <link rel="icon" href="./assets/favicons/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="./assets/favicons/apple-touch-icon.png" type="image/x-icon" />
     <link rel="icon" href="./assets/favicons/apple-touch-icon.png" type="image/x-icon" />
     <script src="index.js" defer></script>
+    <script src="header.js" defer></script>
     <title>VR Charity</title>
 </head>
 
@@ -18,18 +20,21 @@
         <div id="link-container">
             <a aria-disabled="true" class="header-link">VR Charity</a>
             <a href="./" class="header-link">Home</a>
-            <a href="" class="header-link">Donate</a>
+            <a href="./donate/index.html" class="header-link">Donate</a>
             <a href="" class="header-link">Teams</a>
             <a href="" class="header-link">Register</a>
             <a href="" class="header-link">Events</a>
             <a href="" class="header-link">Rules</a>
-            <a href="" class="header-link">Parteners</a>
+            <a href="" class="header-link">Partners</a>
             <a href="https://discord.gg/sShjcHKaGB" class="header-link">Discord</a>
+            <a href="" class="header-link">Contact us</a>
             <a href="" class="header-link">Login</a>
         </div>
     </header>
     <main>
-        <img src="./assets/images/logo.png" id="logo-faded" alt="" />
+        <div id="parallax-container">
+            <img src="./assets/images/logo.png" id="logo-faded" alt="" />
+        </div>
         <img src="./assets/images/logo.png" id="main-logo" alt="" />
         <p id="about">Welcome to the VR Charity Tournaments website, where we create large tournaments to raise money
             for charities that are voted upon by the players!
@@ -39,21 +44,46 @@
             prize pools.
         </p>
         <div id="games-container">
-            <img class="game-img" srcset="./assets/images/onward.png, ./assets/images/onward-half.png 0.5x" sizes=""
-                alt="" />
-            <img class="game-img" srcset="./assets/images/vail.png, ./assets/images/vail-half.png 0.5x" sizes=""
-                alt="" />
-            <img class="game-img" srcset="./assets/images/contractors.png, ./assets/images/contractors-half.png 0.5x"
-                sizes="" alt="" />
-            <img class="game-img" srcset="./assets/images/vtol.png, ./assets/images/vtol-half.png 0.5x" sizes=""
-                alt="" />
-            <img class="game-img" srcset="./assets/images/walkabout-mg.png, ./assets/images/walkabout-mg-half.png 0.5x"
-                sizes="" alt="" />
-            <img class="game-img" srcset="./assets/images/hyper-dash.png, ./assets/images/hyper-dash-half.png 0.5x"
-                sizes="" alt="" />
-            <img class="game-img" srcset="./assets/images/echo-arena.png, ./assets/images/echo-arena-half.png 0.5x"
-                sizes="" alt="" />
+            <img class="game-img" id="onward" src="./assets/images/onward.png" alt="" />
+            <img class="game-img" id="vail" src="./assets/images/vail.png" alt="" />
+            <img class="game-img" id="contractors" src="./assets/images/contractors.png" alt="" />
+            <img class="game-img" id="vtol" src="./assets/images/vtol.png" alt="" />
+            <img class="game-img" id="walkabout-mg" src="./assets/images/walkabout-mg.png" alt="" />
+            <img class="game-img" id="hyper-dash" src="./assets/images/hyper-dash.png" alt="" />
+            <img class="game-img" id="echo-arena" src="./assets/images/echo-arena.png" alt="" />
         </div>
+        <p id="caption">Tournaments for all your favorite titles!</p>
+        <section id="news">
+            <h2>News:</h2>
+            <div class="news-entry" id="empty-feed">
+                <p class="news-entry-body">Nothing for now…</p>
+            </div>
+        </section>
+        <section id="sponsors">
+            <h2>A thanks to our sponsors!</h2>
+            <div id="sponsor-container"></div>
+        </section>
+        <footer>
+            <div id="quick-links">
+                Quick links:<br>
+                <a href="./" class="footer-link">Home</a>
+                <a href="./donate/index.html" class="footer-link">Donate</a>
+                <a href="" class="footer-link">Teams</a>
+                <a href="" class="footer-link">Register</a>
+                <a href="" class="footer-link">Events</a>
+                <a href="" class="footer-link">Rules</a>
+                <a href="" class="footer-link">Partners</a>
+                <a href="https://discord.gg/sShjcHKaGB" class="footer-link">Discord</a>
+                <a href="" class="footer-link">Contact us</a>
+                <a href="" class="footer-link">Login</a>
+            </div>
+            <p id="info">
+                VRCharity website v0.2.0.0 (build 4)<br>
+                Last built: October 11th 2022<br>
+                Last updated: October 11th 2022<br>
+                Designed by eiπ#5267
+            </p>
+        </footer>
     </main>
 </body>
 
