@@ -52,6 +52,8 @@ div#link-container a:last-of-type {
 }
 
 footer {
+    position: relative;
+    top: 50px;
     color: hsl(0, 0%, 90%);
     padding: 5px;
     margin: 10px 0 0 0;
@@ -93,7 +95,7 @@ p#info {
 
 @media screen and (max-width: 1000px) {
     header {
-        height: 20px;
+        height: 40px;
         width: 100%;
         overflow: hidden;
         transition: height 0.5s ease-in-out;
@@ -101,11 +103,39 @@ p#info {
         width: 100%;
     }
 
-    header>div#link-container {
-        height: 20px;
+    header div#link-container {
+        height: 40px;
         width: 100%;
         overflow: hidden;
         transition: height 0.5s ease-in-out;
+    }
+
+    header.collapsed div#link-container a:first-of-type {
+        margin: 5px 0 20px 0;
+        padding: 0;
+    }
+
+    header.expanded div#link-container a:first-of-type {
+        margin: 5px 0 20px 0;
+        padding: 0;
+    }
+
+    header div#link-container a:first-of-type::after {
+        font-family: monospace;
+        font-size: 1em;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%) scaleX(1.5);
+        color: black;
+        bottom: -10px;
+    }
+
+    header.collapsed div#link-container a:first-of-type::after {
+        content: "▾";
+    }
+
+    header.expanded div#link-container a:first-of-type::after {
+        content: "▴";
     }
 
     div#link-container a:first-of-type,
@@ -141,5 +171,37 @@ p#info {
         padding: 3px 0;
         width: 100%;
         text-align: center;
+    }
+
+    p#about {
+        font-size: 16px;
+    }
+    
+    section#sponsors {
+        width: 100%;
+        left: 0;
+    }
+
+    section#sponsors h2 {
+        font-size: 1em;
+    }
+
+    p#info {
+        display: none;
+    }
+
+    div#quick-links {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    img#main-logo {
+        animation: none;
+    }
+
+    header,
+    header div#link-container {
+        transition: none;
     }
 }

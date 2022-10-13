@@ -59,6 +59,7 @@ p#about {
 }
 
 div#games-container {
+    box-sizing: border-box;
     position: relative;
     top: 50px;
     display: grid;
@@ -71,6 +72,7 @@ div#games-container {
 }
 
 img.game-img {
+    box-sizing: border-box;
     width: 100%;
     height: 30vh;
     object-fit: cover;
@@ -91,7 +93,14 @@ img#vtol {
     object-position: 100% 0;
 }
 
+img#echo-arena {
+    object-position: 45% 0;
+}
+
 p#caption {
+    position: relative;
+    top: 50px;
+    color: hsl(0, 0%, 90%);
     text-transform: uppercase;
     text-align: center;
     margin: 0 5%;
@@ -103,6 +112,7 @@ section#news,
 section#sponsors {
     color: hsl(0, 0%, 90%);
     position: relative;
+    top: 50px;
     padding: 0 0 3px 0;
     margin-top: 30px;
     background-color: hsl(210, 39%, 20%);
@@ -120,7 +130,7 @@ section#sponsors>h2 {
     background-color: hsl(210, 39%, 20%);
 }
 
-section#sponsors>h2 {
+section#sponsors h2 {
     text-align: center;
 }
 
@@ -194,7 +204,7 @@ div#sponsor-container {
     gap: 10px;
 }
 
-div.sponsor {
+a.sponsor {
     aspect-ratio: 1;
     cursor: pointer;
     background-repeat: no-repeat;
@@ -202,6 +212,33 @@ div.sponsor {
     background-position: 50% 50%;
     box-sizing: border-box;
     border: 2px solid hsl(210, 39%, 30%);
+}
+
+@media screen and (max-width: 1000px) {
+    p#about {
+        font-size: 16px;
+    }
+    
+    section#sponsors {
+        width: 100%;
+        left: 0;
+    }
+
+    section#sponsors h2 {
+        font-size: 1em;
+    }
+
+    p#info {
+        display: none;
+    }
+
+    div#quick-links {
+        grid-column: 1 / -1;
+    }
+
+    img.game-img {
+        border-width: 3px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

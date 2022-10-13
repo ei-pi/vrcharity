@@ -1,5 +1,11 @@
 # VR Charity website build changelog
 
+## v0.2.0.1 (10/12/2022)
+- Fixed some layout issues on the home page
+- Made the donation prompts prettier
+- Added some missing links
+- Changed some images
+
 ## v0.2.0.0 (10/11/2022)
 - Finished the games section
 - Fixed the multiple-res images

@@ -1,27 +1,41 @@
-(() => {
+"use strict";
+{
     // Donations
     const donationContainer = document.querySelector("div#donation-container");
 
-    function addDonation(displayText, imgPath, site) {
-        const container = document.createElement("div"),
-            link = document.createElement("a");
+    function addDonation(displayText, imgPath, bgColor, txtColor, site) {
+        document.querySelector("a#no-donation")?.remove?.();
 
-        link.innerText = displayText;
-        link.href = site;
-        container.className = "donation-prompt";
-        container.style.backgroundImage = `url("${imgPath}")`;
-
-        container.appendChild(link);
-
-        document.querySelector("div#no-donation")?.remove?.();
-        donationContainer.appendChild(container);
+        donationContainer.appendChild(makeElement(
+            "a",
+            {
+                innerText: displayText ?? site,
+                title: site,
+                href: site,
+                className: "donation-prompt",
+                style: {
+                    backgroundImage: `url("${imgPath}")`,
+                    backgroundColor: bgColor ?? "",
+                    color: txtColor ?? ""
+                }
+            }
+        ));
     }
 
     [
         [
             "StackUp",
-            "",
+            "./assets/stackup.png",
+            "gray",
+            "white",
             "https://stackup.donordrive.com/index.cfm?fuseaction=donorDrive.team&teamID=5344"
+        ],
+        [
+            "Contribute to funds",
+            "./assets/contrib.png",
+            "",
+            "white",
+            "../contact/index.html"
         ]
     ].forEach(e => addDonation(...e));
-})();
+}

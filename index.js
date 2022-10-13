@@ -1,29 +1,47 @@
-(() => {
+"use strict";
+{
     // News
     const newsContainer = document.querySelector("section#news");
 
     function pushNewsEntry(title, author, date, body) {
-        const container = document.createElement("div"),
-            articleTitle = document.createElement("p"),
-            articleBody = document.createElement("p"),
-            articleAuthor = document.createElement("p"),
-            articleDate = document.createElement("p");
-
-        container.className = "news-entry";
-        articleTitle.className = "news-entry-title";
-        articleBody.className = "news-entry-body";
-        articleAuthor.className = "news-entry-author";
-        articleDate.className = "news-entry-date";
-
-        articleTitle.innerText = title ?? "No title given";
-        articleBody.innerText = body ?? "Empty body";
-        articleAuthor.innerText = author ?? "Anonymous";
-        articleDate.innerText = date ?? "Unknown date";
-
-        container.append(articleTitle, articleAuthor, articleDate, articleBody);
-
         document.querySelector("section#news div.news-entry#empty-feed")?.remove?.();
-        newsContainer.appendChild(container);
+        
+        newsContainer.appendChild(makeElement(
+            "div",
+            {
+                className: "news-entry"
+            },
+            [
+                makeElement(
+                    "p",
+                    {
+                        className: "news-entry-title",
+                        innerText: title ?? "No title given"
+                    }
+                ),
+                makeElement(
+                    "p",
+                    {
+                        className: "news-entry-body",
+                        innerText: body ?? "Empty body"
+                    }
+                ),
+                makeElement(
+                    "p",
+                    {
+                        className: "news-entry-author",
+                        innerText: author ?? "Anonymous"
+                    }
+                ),
+                makeElement(
+                    "p",
+                    {
+                        className: "news-entry-date",
+                        innerText: date ?? "Unknown date"
+                    }
+                ),
+            ]
+        ));
     }
 
     [
@@ -77,14 +95,18 @@
     const sponsorContainer = document.querySelector("div#sponsor-container");
     
     function addSponsor(imgPath, site, bgColor) {
-        const container = document.createElement("div");
-    
-        container.style.backgroundImage = `url("${imgPath}")`;
-        container.style.backgroundColor = bgColor ?? "";
-        container.className = "sponsor";
-        container.addEventListener("click", e => e.button || window.open(site));
-
-        sponsorContainer.appendChild(container);
+        sponsorContainer.appendChild(makeElement(
+            "a",
+            {
+                href: site,
+                title: site,
+                className: "sponsor",
+                style: {
+                    backgroundImage: `url("${imgPath}")`,
+                    backgroundColor: bgColor ?? ""
+                }
+            }
+        ));
     }
 
     [
@@ -118,4 +140,4 @@
     ].forEach(e => {
         addSponsor(...e);
     });
-})();
+}
