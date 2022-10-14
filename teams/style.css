@@ -1,0 +1,172 @@
+html {
+    background-color: #111921;
+}
+
+body {
+    margin: 0;
+    overscroll-behavior: none;
+    font-display: fallback;
+    font-family: bungee, Menlo, monospace;
+}
+
+main {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+div#tourney-container {
+    position: relative;
+    top: 50px;
+}
+
+div#tabs {
+    position: relative;
+    color: hsl(0, 0%, 90%);
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+div#body {
+    box-sizing: border-box;
+    padding: 5px;
+    position: relative;
+    color: hsl(0, 0%, 90%);
+    width: 90%;
+    left: 5%;
+    background-color: hsl(210, 40%, 30%);
+    border-radius: 0 0 5px 5px;
+    border-style: none solid solid solid;
+    border-width: 3px;
+    border-color: hsl(210, 40%, 50%);
+}
+
+div#no-tourneys {
+    width: 100%;
+    text-align: center;
+}
+
+button.tourney:first-of-type {
+    border-left-style: none;
+}
+
+button.tourney:last-of-type {
+    border-right-style: none;
+}
+
+button.tourney {
+    color: hsl(0, 0%, 90%);
+    box-sizing: border-box;
+    font-family: bungee, Menlo, monospace;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: hsl(210, 40%, 30%);
+    border-radius: 5px 5px 0 0;
+    border-style: none solid solid solid;
+    border-width: 3px;
+    border-color: hsl(210, 40%, 50%);
+}
+
+button.tourney:hover {
+    background-color: hsl(210, 40%, 28%);
+    cursor: pointer;
+}
+
+button.tourney.selected {
+    background-color: hsl(120, 40%, 28%);
+    border-color: hsl(120, 40%, 50%);
+}
+
+div.team:first-of-type {
+    margin-top: 0;
+}
+
+div.team:last-of-type {
+    margin-bottom: 0;
+}
+
+div.team {
+    position: relative;
+    margin: 10px 0;
+    background-color: hsl(210, 50%, 35%);
+    border: 2px solid hsl(210, 40%, 50%);
+    border-radius: 5px;
+    padding: 3px 10px 3px 18px;
+    display: grid;
+    align-items: center;
+    grid-template: 30px / 50% 50%;
+}
+
+div.team:hover {
+    cursor: pointer;
+}
+
+div.team p.verified-widget:hover {
+    cursor: default;
+}
+
+div.team p.verified-widget {
+    text-align: center;
+    width: min-content;
+    min-width: 65px;
+    justify-self: end;
+    margin: 0;
+    font-family: Menlo, monospace;
+    grid-column: -2 / -1;
+    border-radius: 3px;
+    font-size: 0.75em;
+    padding: 3px;
+}
+
+div.team p.verified-widget.verif {
+    background-color: hsl(120, 50%, 50%);
+}
+
+div.team p.verified-widget.pend {
+    background-color: hsl(30, 50%, 50%);
+}
+
+div.team::before {
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+div.team.collapsed::before {
+    content: "▴";
+}
+
+div.team.expanded::before {
+    content: "▾";
+}
+
+ul.member-list {
+    position: relative;
+    left: 5px;
+    font-family: Menlo, monospace;
+    grid-column: 1 / -1;
+    padding: 0 0 0 10px;
+    font-size: 0.8em;
+    margin: 0;
+}
+
+ul.tourney-list {
+    position: relative;
+    left: 5px;
+    font-family: Menlo, monospace;
+    grid-column: 1 / -1;
+    padding: 0 0 0 10px;
+    font-size: 0.8em;
+    margin: 10px 0 0 0;
+}
+
+@font-face {
+    font-family: bungee;
+    src: url("../assets/fonts/Bungee-Regular.ttf");
+}
