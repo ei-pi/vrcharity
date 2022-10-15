@@ -228,14 +228,6 @@ a.sponsor {
         font-size: 1em;
     }
 
-    p#info {
-        display: none;
-    }
-
-    div#quick-links {
-        grid-column: 1 / -1;
-    }
-
     img.game-img {
         border-width: 3px;
     }

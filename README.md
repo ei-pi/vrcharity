@@ -1,5 +1,11 @@
 # VR Charity website build changelog
 
+## v0.2.0.3 (10/14/2022)
+- Fixed some links
+- Started the registration page
+- More contacts
+- Layout adjustments
+
 ## v0.2.0.2 (10/13/2022)
 - Added the teams page
 

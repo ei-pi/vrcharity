@@ -1,0 +1,117 @@
+html {
+    background-color: #111921;
+}
+
+body {
+    margin: 0;
+    overscroll-behavior: none;
+    font-display: fallback;
+    font-family: bungee, Menlo, monospace;
+}
+
+main {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+div#tourney-container {
+    position: relative;
+    top: 50px;
+}
+
+div.game {
+    position: relative;
+    box-sizing: border-box;
+    left: 5%;
+    width: 90%;
+    color: hsl(0, 0%, 90%);
+    padding: 5px 5px 5px 30px;
+    margin: 5px 0;
+    background-color: hsl(210, 40%, 30%);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: hsl(210, 40%, 50%);
+}
+
+div.game[data-act-tourneys="0"] {
+    opacity: 80%;
+}
+
+div.game[data-act-tourneys="0"][data-pas-tourneys="0"] {
+    opacity: 60%;
+}
+
+div.game:hover {
+    cursor: pointer;
+}
+
+div.game::before {
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 16px;
+    width: 25px;
+    padding: 2px;
+    left: 2px;
+    top: 7px;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-family: Menlo, monospace;
+    font-size: 12px;
+    color: hsl(0, 0%, 90%);
+    text-shadow: 0.75px 0.75px black, 0.75px -0.75px black, -0.75px -0.75px black, -0.75px 0.75px black;
+    content: attr(data-act-tourneys);
+    background-color: hsl(120, 60%, 40%);
+}
+
+div.game[data-act-tourneys="0"]::before {
+    content: attr(data-pas-tourneys);
+    background-color: hsl(60, 60%, 40%);
+}
+
+div.game[data-act-tourneys="0"][data-pas-tourneys="0"]::before {
+    background-color: hsl(0, 60%, 40%);
+}
+
+div.game[data-act-tourneys="0"][data-pas-tourneys="0"]:hover {
+    cursor: default;
+}
+
+div#no-tourneys {
+    color: hsl(0, 0%, 90%);
+    width: 100%;
+    text-align: center;
+}
+
+div.game-tourney-container {
+    position: relative;
+    height: auto;
+    background-color: hsl(210, 40%, 32%);
+}
+
+div.game-tourney {
+    position: relative;
+    box-sizing: border-box;
+    width: 96%;
+    left: 2%;
+    margin: 5px;
+    background-color: hsl(210, 40%, 35%);
+    padding: 3px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: hsl(210, 40%, 50%);
+}
+
+div.game-tourney p {
+    margin: 0;
+}
+
+@font-face {
+    font-family: bungee;
+    src: url("../assets/fonts/Bungee-Regular.ttf");
+}

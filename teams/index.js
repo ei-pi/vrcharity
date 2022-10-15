@@ -227,7 +227,7 @@
                 ["Administration", ["admin_00", "admin_01", "admin_02", "admin_03"]]
             ]
         ]
-    ].forEach(e => {
+    ].forEach(/** @param {[string, [string, string[]][]]} e */e => {
         const tour = new tourney(e[0]);
 
         for (const [teamName, members] of e[1]) {
