@@ -24,7 +24,7 @@
 
     [
         [
-            "StackUp",
+            "StackUp 2022",
             "./assets/stackup.png",
             "gray",
             "white",

@@ -10,8 +10,8 @@ body {
 }
 
 main {
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    overflow-y: visible;
 }
 
 div#tourney-container {
@@ -34,11 +34,11 @@ div.game {
     border-color: hsl(210, 40%, 50%);
 }
 
-div.game[data-act-tourneys="0"] {
+div.game[data-open-tourneys="0"] {
     opacity: 80%;
 }
 
-div.game[data-act-tourneys="0"][data-pas-tourneys="0"] {
+div.game[data-open-tourneys="0"][data-closed-tourneys="0"] {
     opacity: 60%;
 }
 
@@ -64,20 +64,21 @@ div.game::before {
     font-size: 12px;
     color: hsl(0, 0%, 90%);
     text-shadow: 0.75px 0.75px black, 0.75px -0.75px black, -0.75px -0.75px black, -0.75px 0.75px black;
-    content: attr(data-act-tourneys);
+    content: attr(data-open-tourneys);
     background-color: hsl(120, 60%, 40%);
 }
 
-div.game[data-act-tourneys="0"]::before {
-    content: attr(data-pas-tourneys);
+div.game[data-open-tourneys="0"]::before {
+    content: attr(data-closed-tourneys);
     background-color: hsl(60, 60%, 40%);
 }
 
-div.game[data-act-tourneys="0"][data-pas-tourneys="0"]::before {
+div.game[data-open-tourneys="0"][data-closed-tourneys="0"]::before {
+    content: attr(data-past-tourneys);
     background-color: hsl(0, 60%, 40%);
 }
 
-div.game[data-act-tourneys="0"][data-pas-tourneys="0"]:hover {
+div.game[data-open-tourneys="0"][data-closed-tourneys="0"][data-past-tourneys="0"]:hover {
     cursor: default;
 }
 
@@ -96,19 +97,74 @@ div.game-tourney-container {
 div.game-tourney {
     position: relative;
     box-sizing: border-box;
+    font-family: "Trebuchet MS", "Lucida Grande", sans-serif;
     width: 96%;
     left: 2%;
     margin: 5px;
     background-color: hsl(210, 40%, 35%);
     padding: 3px;
     border-radius: 5px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: hsl(210, 40%, 50%);
+    border: solid 3px hsl(210, 40%, 50%);
+}
+
+div.game-tourney:hover {
+    cursor: default;
 }
 
 div.game-tourney p {
     margin: 0;
+}
+
+div.game-tourney p.tourney-name {
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+div.game-tourney p.nopen-warning {
+    padding: 3px;
+    font-size: 0.9em;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    color: hsl(0, 0%, 90%);
+    background-color: hsl(0, 40%, 50%);
+    border: 2px solid hsl(0, 60%, 40%);
+    font-weight: bold;
+}
+
+div.game-tourney p.tourney-date,
+div.game-tourney p.tourney-prize,
+div.game-tourney p.tourney-format,
+div.game-tourney p.tourney-registration,
+div.game-tourney a.tourney-rules,
+div.game-tourney a.tourney-charity,
+div.game-tourney p.tourney-charity-desc {
+    font-size: 0.8em;
+}
+
+div.game-tourney p.tourney-format {
+    margin: 5px 0;
+}
+
+div.game-tourney a.tourney-charity {
+    margin-top: 5px;
+}
+
+div.game-tourney a.tourney-rules,
+div.game-tourney a.tourney-charity {
+    display: block;
+    width: fit-content;
+    color: hsl(240, 100%, 90%);
+}
+
+div.game-tourney a.tourney-rules:hover,
+div.game-tourney a.tourney-charity:hover {
+    color: hsl(300, 100%, 90%);
+}
+
+div.game-tourney a.tourney-rules:visited,
+div.game-tourney a.tourney-charity:visited {
+    color: hsl(0, 100%, 90%);
 }
 
 @font-face {

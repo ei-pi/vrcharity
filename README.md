@@ -1,5 +1,14 @@
 # VR Charity website build changelog
 
+## v0.2.0.4 (10/15/2022)
+- Continued the registration page
+- Added the ability to Tab around the page
+- Added [skip links](https://css-tricks.com/how-to-create-a-skip-to-content-link/)
+- Added fallback content to the contacts page
+- Fixed a link
+- More layout fixes
+- Updated some data, slowly turning the site more serious and towards its final purpose
+
 ## v0.2.0.3 (10/14/2022)
 - Fixed some links
 - Started the registration page

@@ -10,8 +10,8 @@ body {
 }
 
 main {
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    overflow-y: visible;
 }
 
 div#donation-container {

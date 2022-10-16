@@ -3,12 +3,15 @@
     const contactContainer = document.querySelector("div#contact-container");
 
     function addContact(name, title, email) {
+        document.querySelector("div#contact-container div#no-contact")?.remove?.();
+
         contactContainer.appendChild(makeElement(
             "a",
             {
                 className: "contact",
                 title: `mailto:${email}`,
                 href: `mailto:${email}`,
+                tabIndex: 0
             },
             [
                 makeElement(

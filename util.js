@@ -24,7 +24,9 @@
 
 {
     for (const a of [...document.querySelectorAll("a")]) {
-        a.title = a.href;
+        if (!a.classList.contains("no-title")) {
+            a.title = a.href;
+        }
     }
 }
 

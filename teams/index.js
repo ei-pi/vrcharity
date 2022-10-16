@@ -22,14 +22,14 @@
         name;
 
         /**
-         * @type {team[]}
+         * @type {Map<string, teams: team[]>}
          */
-        teams = [];
+        brackets = new Map;
 
         /**
          * @type {DocumentFragment}
          */
-        #docFrag = new DocumentFragment;
+        #docFrag;
 
         /**
          * @param {string} name
@@ -41,15 +41,12 @@
         }
 
         /**
+         * @param {string} bracket
          * @param {team} team
          */
-        addTeam(team) {
-            this.teams.push(team);
+        addTeam(bracket, team) {
+            (this.brackets.get(bracket) ?? this.brackets.set(bracket, []).get(bracket)).push(team);
             team.verified.set(this.name, false);
-        }
-
-        setTeamVerification(team, value) {
-            this.teams.find(t => t === team)?.verified?.set?.(this.name, value);
         }
 
         addToTabs() {
@@ -86,87 +83,143 @@
         }
 
         addToDOM() {
-            [...bodyContainer.children, ...this.#docFrag.children].forEach(e => e.remove());
+            [...bodyContainer.children].forEach(e => e.remove());
 
             const T = this;
 
-            this.teams.forEach(team => {
-                const verified = team.verified.get(this.name) ?? false;
-
-                this.#docFrag.appendChild(makeElement(
+            bodyContainer.appendChild(this.#docFrag ??=
+                makeElement(
                     "div",
-                    {
-                        textContent: team.name,
-                        className: "team collapsed"
-                    },
-                    makeElement(
-                        "p",
-                        {
-                            textContent: `${verified ? "Verified" : "Pending"}`,
-                            className: `verified-widget ${verified ? "verif" : "pend"}`,
-                            title: verified ? "Entry fee received" : "Entry fee not received"
-                        },
-                        void 0,
-                        {
-                            click(ev) { ev.stopPropagation(); }
-                        }
-                    ),
-                    (() => {
-                        /**
-                         * @type {HTMLUListElement}
-                         */
-                        let names,
-                            /**
-                             * @type {HTMLUListElement}
-                             */
-                            participatedTourneys;
+                    {},
+                    [...this.brackets.entries()].map(([name, teams]) => {
+                        return makeElement(
+                            "div",
+                            {
+                                className: "bracket collapsed",
+                                textContent: name,
+                                tabIndex: 0
+                            },
+                            void 0,
+                            (() => {
+                                /**
+                                 * @type {HTMLDivElement[]}
+                                 */
+                                let content;
 
-                        function generateNames() {
-                            return names = makeElement(
-                                "ul",
-                                {
-                                    textContent: "Members",
-                                    className: "member-list"
-                                },
-                                team.members.map(m => makeElement("li", { textContent: m }))
-                            );
-                        }
+                                function generateContent() {
+                                    return content = teams.map(team => {
+                                        const verified = team.verified.get(T.name) ?? false;
 
-                        function generateTourneys() {
-                            const otherTourneys = [...team.verified.keys()].filter(v => v != T.name);
+                                        return makeElement(
+                                            "div",
+                                            {
+                                                textContent: team.name,
+                                                className: "team collapsed",
+                                                tabIndex: 0
+                                            },
+                                            makeElement(
+                                                "p",
+                                                {
+                                                    textContent: `${verified ? "Verified" : "Pending"}`,
+                                                    className: `verified-widget ${verified ? "verif" : "pend"}`,
+                                                    title: verified ? "Entry fee received" : "Entry fee not received"
+                                                },
+                                                void 0,
+                                                {
+                                                    click(ev) { ev.stopPropagation(); }
+                                                }
+                                            ),
+                                            (() => {
+                                                /**
+                                                 * @type {HTMLUListElement}
+                                                 */
+                                                let names,
+                                                    /**
+                                                     * @type {HTMLUListElement}
+                                                     */
+                                                    participatedTourneys;
 
-                            return participatedTourneys = otherTourneys.length ? makeElement(
-                                "ul",
-                                {
-                                    textContent: "Also participated in:",
-                                    className: "tourney-list"
-                                },
-                                otherTourneys.map(v => makeElement("li", { textContent: v }))
-                            ) : void 0;
-                        }
+                                                function generateNames() {
+                                                    return names = makeElement(
+                                                        "ul",
+                                                        {
+                                                            textContent: team.members.length ? "Members" : "No members found…",
+                                                            className: "member-list",
+                                                            style: {
+                                                                fontStyle: team.members.length ? "" : "italic"
+                                                            }
+                                                        },
 
-                        return {
-                            click(ev) {
-                                if (!ev.button) {
-                                    this.classList.toggle("collapsed");
-                                    const exapanded = this.classList.toggle("expanded");
+                                                        team.members.map(m => makeElement("li", { textContent: m }))
+                                                    );
+                                                }
 
-                                    if (exapanded) {
-                                        generateTourneys();
-                                        this.appendChild(generateNames());
-                                        participatedTourneys && this.appendChild(participatedTourneys);
-                                    } else {
-                                        names.remove();
-                                        participatedTourneys.remove();
-                                    }
+                                                function generateTourneys() {
+                                                    const otherTourneys = [...team.verified.keys()].filter(v => v != T.name);
+
+                                                    return participatedTourneys = otherTourneys.length ? makeElement(
+                                                        "ul",
+                                                        {
+                                                            textContent: "Also participated in:",
+                                                            className: "tourney-list"
+                                                        },
+                                                        otherTourneys.map(v => makeElement("li", { textContent: v }))
+                                                    ) : void 0;
+                                                }
+
+                                                return {
+                                                    click(ev) {
+                                                        ev.stopPropagation();
+                                                        if (!ev.button) {
+                                                            this.classList.toggle("collapsed");
+                                                            const exapanded = this.classList.toggle("expanded");
+
+                                                            if (exapanded) {
+                                                                generateTourneys();
+                                                                this.appendChild(generateNames());
+                                                                participatedTourneys && this.appendChild(participatedTourneys);
+                                                            } else {
+                                                                names?.remove?.();
+                                                                participatedTourneys?.remove?.();
+                                                            }
+                                                        }
+                                                    },
+                                                    keydown(ev) {
+                                                        ev.stopPropagation();
+                                                        if (ev.key == "Enter") {
+                                                            this.dispatchEvent(new MouseEvent("click"));
+                                                        }
+                                                    }
+                                                };
+                                            })()
+                                        );
+                                    });
                                 }
-                            }
-                        };
-                    })()
-                ));
-            });
 
-            bodyContainer.appendChild(this.#docFrag);
+                                return {
+                                    click(ev) {
+                                        if (!ev.button) {
+                                            this.classList.toggle("collapsed");
+                                            const exapanded = this.classList.toggle("expanded");
+
+                                            if (exapanded) {
+                                                this.append(...generateContent());
+                                            } else {
+                                                content?.forEach(e => e.remove());
+                                            }
+                                        }
+                                    },
+                                    keydown(ev) {
+                                        if (ev.key == "Enter") {
+                                            this.dispatchEvent(new MouseEvent("click"));
+                                        }
+                                    }
+                                };
+                            })()
+                        );
+                    })
+                )
+            );
         }
     }
 
@@ -200,49 +253,110 @@
 
     [
         [
-            "Office-wide table hockey tourney 04/25/2001",
+            "Game Pink Tournament 2022",
             [
-                ["The A team", ["Imelda", "Vincent", "Patrick", "Harold"]],
-                ["The B team", ["Daryll", "Pierre", "Ashley", "Eugene"]],
-                ["Janitor gang", ["00", "01", "04", "13"]],
-                ["THE BOSSES", ["Natalie", "Alex", "Carol", "Katelyn"]],
-                ["Administration", ["admin_00", "admin_01", "admin_02", "admin_03"]]
+                {
+                    name: "Hero Bracket",
+                    teams: [
+                        ["Notorious", []],
+                        ["Dark Tidings", []],
+                        ["ROME", []],
+                        ["STR1VE", []],
+                        ["Ember", []],
+                        ["Animal House", []],
+                        ["Black Watch", []],
+                        ["SirenSnails", []],
+                        ["ODB", []],
+                        ["Peacekeepers", []],
+                        ["Bossfight", []],
+                        ["Furious Blaze Matters", []],
+                        ["INSIDIOUS", []],
+                        ["Imperial", []],
+                    ]
+                },
+                {
+                    name: "Rise Up Bracket",
+                    teams: [
+                        ["Excommunicado", []],
+                        ["After Hours", []],
+                        ["Astro", []],
+                        ["The Dark Wolves", []],
+                        ["Death Wish", []],
+                        ["Impact Momentum", []],
+                        ["The Godfather's", []],
+                        ["WarThug_QC", []],
+                        ["Los Monjes", []],
+                        ["Save 2nd Base", []],
+                        ["Alchemist", []],
+                        ["Bad Company", []],
+                        ["OCC TEAM", []],
+                        ["Patron Saints", []],
+                        ["Iron Side", []],
+                        ["The Amazonians", []],
+                        ["In Ora Mortis", []],
+                        ["Dēlēre", []],
+                        ["Tau-5", []],
+                        ["The Nightingales", []],
+                        ["Homeland Esports", []],
+                        ["SPEAR", []],
+                    ]
+                }
             ]
         ],
         [
-            "Office-wide table hockey tourney 03/14/2001",
+            "StackUp Tournament 2021",
             [
-                ["Professional idiots", ["Imelda", "Ashley", "Steven"]],
-                ["The ROB clan", ["Robert", "Bob", "Daryll"]],
-                ["Bosses", ["Natalie", "Josh", "Alex", "Carol"]],
-                ["Administration", ["admin_00", "admin_01", "admin_02", "admin_03"]]
-            ]
-        ],
-        [
-            "Volley tourney",
-            [
-                ["Kings", ["Robert", "Daryll", "Imelda", "Pierre"]],
-                ["Team name goes here", ["Vincent", "Alex", "Gary", "Eric"]],
-                ["; DROP TABLE *", ["supreme hacker", "arch user", "null", "steve linus gates"]],
-                ["Administration", ["admin_00", "admin_01", "admin_02", "admin_03"]]
-            ]
+                {
+                    name: "T-Rex Bracket",
+                    teams: [
+                        ["Kai", []],
+                        ["Animal House", []],
+                        ["Very Sexy", []],
+                        ["Friendly Fire", []],
+                        ["ReadyUp", []],
+                        ["BossFight", []],
+                        ["Notorious", []],
+                        ["CodLegends", []],
+                        ["Dark Tidings", []],
+                        ["GentlemansClub", []],
+                    ]
+                },
+                {
+                    name: "Spinosaurus Bracket",
+                    teams: [
+                        ["Violence of Action", []],
+                        ["SnS", []],
+                        ["Astro", []],
+                        ["L.R.R.P", []],
+                        ["Enitity", []],
+                        ["After Hours", []],
+                        ["Revengers", []],
+                        ["Leftovers", []],
+                        ["Swagalicious", []],
+                        ["The Nightingales", []],
+                        ["Legion", []],
+                    ]
+                }
+            ],
         ]
-    ].forEach(/** @param {[string, [string, string[]][]]} e */e => {
+    ].forEach(/** @param {[string, { name: string, teams: [string, string[]][] }[]]} e */e => {
         const tour = new tourney(e[0]);
 
-        for (const [teamName, members] of e[1]) {
-            const teamFound = teams.find(team => team.name == teamName);
+        for (const { name, teams } of e[1]) {
+            for (const [teamName, members] of teams) {
+                const teamFound = teams.find(team => team.name == teamName);
 
-            if (teamFound) {
-                tour.addTeam(teamFound);
-                teamFound.members = members;
-                continue;
+                if (teamFound) {
+                    tour.addTeam(teamFound);
+                    teamFound.members = members;
+                    continue;
+                }
+
+                tour.addTeam(name, new team(teamName, members));
             }
-
-            tour.addTeam(new team(teamName, members));
         }
 
-        tour.teams.forEach(e => e.verified.set(tour.name, Math.random() > 0.5));
+        [...tour.brackets.values()].flat().forEach(e => e.verified.set(tour.name, true));
     });
 
     render();

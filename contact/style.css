@@ -10,8 +10,8 @@ body {
 }
 
 main {
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    overflow-y: visible;
 }
 
 div#contact-container {
@@ -23,6 +23,7 @@ a.contact:first-of-type {
     margin: 0;
 }
 
+div#no-contact,
 a.contact {
     position: relative;
     width: 40%;
@@ -49,6 +50,18 @@ a.contact {
     transition: filter 50ms ease-in-out;
 }
 
+div#no-contact div {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 70px);
+    transform: translate(0, -50%);
+    font-family: monospace;
+    text-shadow: 1px 1px black, 1px -1px black, -1px -1px black, -1px 1px black;
+    white-space: nowrap;
+    overflow-x: hidden;
+    animation: typewriter 0.5s steps(18) 0.3s 1 normal both;
+}
+
 a.contact p span {
     margin: 0;
 }
@@ -56,6 +69,16 @@ a.contact p span {
 a.contact p span {
     font-size: 0.8em;
     font-style: italic;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0em;
+    }
+
+    to {
+        width: 10.8em;
+    }
 }
 
 @font-face {

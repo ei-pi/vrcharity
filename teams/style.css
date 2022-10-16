@@ -10,8 +10,8 @@ body {
 }
 
 main {
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    overflow-y: visible;
 }
 
 div#tourney-container {
@@ -62,7 +62,6 @@ button.tourney {
     font-family: bungee, Menlo, monospace;
     width: 100%;
     border: none;
-    outline: none;
     background-color: hsl(210, 40%, 30%);
     border-radius: 5px 5px 0 0;
     border-style: none solid solid solid;
@@ -80,16 +79,41 @@ button.tourney.selected {
     border-color: hsl(120, 40%, 50%);
 }
 
-div.team:first-of-type {
-    margin-top: 0;
+div.bracket {
+    position: relative;
+    box-sizing: border-box;
+    padding: 5px 5px 5px 18px;
+    width: 100%;
+    margin: 10px 0;
+    background-color: hsl(210, 50%, 35%);
+    border: 2px solid hsl(210, 40%, 50%);
+    border-radius: 5px;
 }
 
-div.team:last-of-type {
-    margin-bottom: 0;
+div.bracket::before {
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+div.bracket.collapsed::before {
+    content: "▴";
+}
+
+div.bracket.expanded::before {
+    content: "▾";
 }
 
 div.team {
     position: relative;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", "Lucida Grande", sans-serif;
+    font-weight: bolder;
+    width: 96%;
+    left: 2%;
     margin: 10px 0;
     background-color: hsl(210, 50%, 35%);
     border: 2px solid hsl(210, 40%, 50%);
@@ -100,7 +124,8 @@ div.team {
     grid-template: 30px / 50% 50%;
 }
 
-div.team:hover {
+div.team:hover,
+div.bracket:hover {
     cursor: pointer;
 }
 
@@ -150,6 +175,7 @@ ul.member-list {
     position: relative;
     left: 5px;
     font-family: Menlo, monospace;
+    font-weight: normal;
     grid-column: 1 / -1;
     padding: 0 0 0 10px;
     font-size: 0.8em;
