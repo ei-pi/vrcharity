@@ -22,7 +22,7 @@
         name;
 
         /**
-         * @type {Map<string, teams: team[]>}
+         * @type {Map<string, team[]>}
          */
         brackets = new Map;
 
@@ -172,9 +172,9 @@
                                                         ev.stopPropagation();
                                                         if (!ev.button) {
                                                             this.classList.toggle("collapsed");
-                                                            const exapanded = this.classList.toggle("expanded");
+                                                            const expanded = this.classList.toggle("expanded");
 
-                                                            if (exapanded) {
+                                                            if (expanded) {
                                                                 generateTourneys();
                                                                 this.appendChild(generateNames());
                                                                 participatedTourneys && this.appendChild(participatedTourneys);
@@ -200,9 +200,9 @@
                                     click(ev) {
                                         if (!ev.button) {
                                             this.classList.toggle("collapsed");
-                                            const exapanded = this.classList.toggle("expanded");
+                                            const expanded = this.classList.toggle("expanded");
 
-                                            if (exapanded) {
+                                            if (expanded) {
                                                 this.append(...generateContent());
                                             } else {
                                                 content?.forEach(e => e.remove());

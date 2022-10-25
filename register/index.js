@@ -32,7 +32,7 @@
         format;
 
         /**
-         * @type {string}
+         * @type {string | undefined}
          */
         rules;
 
@@ -52,7 +52,7 @@
         tourneyDate;
 
         /**
-         * @param {{ name: string, date: Date, prize: string, registration: [Date, Date], format: string, rules: string, charity: { name: string, link: string, desc: string } }} cfg
+         * @param {{ name: string, date: Date, prize: string, registration: [Date, Date], format: string, rules: string | undefined, charity: { name: string, link: string, desc: string } }} cfg
          */
         constructor (cfg) {
             this.name = cfg.name;
@@ -179,11 +179,17 @@
                                         ),
                                         makeElement(
                                             "a",
-                                            {
+                                            t.rules ? {
                                                 href: t.rules,
                                                 title: t.rules,
                                                 className: "tourney-rules",
                                                 innerText: "See the rules here."
+                                            } : {
+                                                style: {
+                                                    color: "unset"
+                                                },
+                                                className: "tourney-rules",
+                                                innerText: "Rules have not been put forwards as of now."
                                             }
                                         ),
                                         makeElement(
@@ -242,14 +248,14 @@
             [
                 {
                     name: "Stack Up 2021",
-                    date: new Date(0),
-                    prize: "??",
+                    date: new Date("2021-09-04"),
+                    prize: "$2000+",
                     registration: [
-                        new Date(0),
-                        new Date(0)
+                        new Date("2021-06-11"),
+                        new Date("2021-07-31")
                     ],
-                    format: "5v5",
-                    rules: "",
+                    format: "5v5, two brackets",
+                    rules: void 0,
                     charity: {
                         name: "Stack Up",
                         link: "https://stackup.donordrive.com/",
@@ -258,18 +264,34 @@
                 },
                 {
                     name: "Game Pink 2022",
-                    date: new Date(0),
-                    prize: "??",
+                    date: new Date("2022-04-03T14:00-05:00"),
+                    prize: "$4800+",
                     registration: [
-                        new Date(0),
-                        new Date(0)
+                        new Date("2022-02-11"),
+                        new Date("2022-04-03T00:00-05:00")
                     ],
-                    format: "5v5",
-                    rules: "",
+                    format: "5v5, two brackets",
+                    rules: "https://img1.wsimg.com/blobby/go/f42ec91a-b5d7-4947-bcee-1e14675db676/downloads/NBCF%20Tournament%202022%20Rules.pdf?ver=1662316158192",
                     charity: {
                         name: "National Breast Cancer Foundation",
                         link: "https://www.nationalbreastcancer.org",
                         desc: "NBCF was founded to fill in the gaps of cancer care, ensuring every woman has the access and information she needs to get through every step of her breast cancer journey."
+                    }
+                },
+                {
+                    name: "Stack Up 2022",
+                    date: new Date("2022-09-03"),
+                    prize: "$3000+",
+                    registration: [
+                        new Date("2022-07-03T00:00-05:00"),
+                        new Date("2022-09-03T00:00-05:00")
+                    ],
+                    format: "5v5, two brackets; uplink format",
+                    rules: "https://img1.wsimg.com/blobby/go/f42ec91a-b5d7-4947-bcee-1e14675db676/downloads/VRCT%20StackUp%202022%20Tournament.pdf?ver=1662316158192",
+                    charity: {
+                        name: "Stack Up",
+                        link: "https://stackup.donordrive.com/",
+                        desc: "Stack Up supports US and Allied veterans by promoting positive mental health and combating veteran suicide through gaming and geek culture with four pillar programs."
                     }
                 }
             ]
@@ -290,15 +312,15 @@
             "Walkabout Mini Golf",
             [
                 {
-                    name: "The legends Mini golf tournament!",
+                    name: "The legends Mini golf tournament",
                     date: new Date("2022-12-09T14:00-05:00"),
                     prize: "$5,000 Prize Pool for top 5 winners",
                     registration: [
-                        new Date("2022-11-01T00:00:00-05:00"),
-                        new Date("2022-12-01T00:00:00-05:00")
+                        new Date("2022-11-01T00:00-05:00"),
+                        new Date("2022-12-01T00:00-05:00")
                     ],
                     format: "Swiss bracket tournament, 8 rounds. 4 players per lobby.\nSINGLE PLAYER TOURNAMENT.\nEvery 18 holes, your score will be entered on Challonge.com, before moving on to the next game (18 holes).\nAfter playing 144 holes, the players with the top 5 lowest scores win!",
-                    rules: "https://en.wikipedia.org/wiki/Common_sense",
+                    rules: void 0,
                     charity: {
                         name: "Feeding America",
                         link: "https://www.feedingamerica.org",
@@ -317,7 +339,7 @@
         ]
     ].forEach(
         /**
-         * @typedef {{ name: string, date: Date, prize: string, registration: [Date, Date], format: string, rules: string, charity: { name: string, link: string, desc: string } }} JSONTourney
+         * @typedef {{ name: string, date: Date, prize: string, registration: [Date, Date], format: string, rules: string | undefined, charity: { name: string, link: string, desc: string } }} JSONTourney
          * @param {[string, JSONTourney[]} e
          **/
         e => {

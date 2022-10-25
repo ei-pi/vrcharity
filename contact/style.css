@@ -47,7 +47,12 @@ a.contact {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: filter 50ms ease-in-out;
+    transition: all 50ms ease-in-out;
+}
+
+a.contact:hover {
+    background-color: hsl(210, 40%, 23%);
+    border: 5px solid hsl(210, 40%, 33%);
 }
 
 div#no-contact div {

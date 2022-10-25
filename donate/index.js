@@ -3,6 +3,13 @@
     // Donations
     const donationContainer = document.querySelector("div#donation-container");
 
+    /**
+     * @param {string} displayText 
+     * @param {string} imgPath 
+     * @param {string} bgColor 
+     * @param {string} txtColor 
+     * @param {string} site 
+     */
     function addDonation(displayText, imgPath, bgColor, txtColor, site) {
         document.querySelector("a#no-donation")?.remove?.();
 
@@ -33,9 +40,9 @@
         [
             "Contribute to funds",
             "./assets/contrib.png",
-            "",
+            void 0,
             "white",
             "../contact/index.html"
         ]
-    ].forEach(e => addDonation(...e));
+    ].forEach(/** @param {[string | undefined, string, string | undefined, string | undefined, string]} e */e => addDonation(...e));
 }

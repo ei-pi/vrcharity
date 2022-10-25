@@ -124,7 +124,7 @@ section#news>h2,
 section#sponsors>h2 {
     margin: 0;
     padding: 3px 3px 3px 10px;
-    width: -webkit-fill-availble;
+    width: -webkit-fill-available;
     position: sticky;
     z-index: 1;
     background-color: hsl(210, 39%, 20%);

@@ -1,5 +1,11 @@
 # VR Charity website build changelog
 
+## v0.2.0.5 (10/24/2022)
+- Updated some data
+- Made some stuff change color on hover
+- Added some internal documentations
+- Started experimenting with database schemas
+
 ## v0.2.0.4 (10/15/2022)
 - Continued the registration page
 - Added the ability to Tab around the page

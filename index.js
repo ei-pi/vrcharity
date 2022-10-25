@@ -3,6 +3,12 @@
     // News
     const newsContainer = document.querySelector("section#news");
 
+    /**
+     * @param {string} title
+     * @param {string} author
+     * @param {Date} date
+     * @param {string} body
+     */
     function pushNewsEntry(title, author, date, body) {
         document.querySelector("section#news div.news-entry#empty-feed")?.remove?.();
 
@@ -37,20 +43,26 @@
                     "p",
                     {
                         className: "news-entry-date",
-                        innerText: date ?? "Unknown date"
+                        innerText: date?.toDateString?.() ?? "Unknown date"
                     }
                 ),
             ]
         ));
     }
 
-    [].forEach(e => {
+
+    [].forEach(/** @param {[string, string, Date, string]} e */ e => {
         pushNewsEntry(...e);
     });
 
     // Sponsors
     const sponsorContainer = document.querySelector("div#sponsor-container");
 
+    /**
+     * @param {string} imgPath
+     * @param {string} site
+     * @param {string} bgColor
+     */
     function addSponsor(imgPath, site, bgColor) {
         sponsorContainer.appendChild(makeElement(
             "a",
@@ -92,9 +104,9 @@
         ],
         [
             "./assets/images/hive-vr.png",
-            "https://www.facebook.com/TheHiveVR/?ref=page_internal"
+            "https://www.facebook.com/TheHiveVR/"
         ],
-    ].forEach(e => {
+    ].forEach(/** @param {[string, string, string | undefined]} e */e => {
         addSponsor(...e);
     });
 }
