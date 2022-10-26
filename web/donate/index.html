@@ -5,52 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A site for registering to VR Charity tournaments.">
-    <link href="../header-footer.css" rel="stylesheet" /> <!-- ! -->
+    <link href="./style.css" rel="stylesheet" />
+    <link href="../header-footer.css" rel="stylesheet" />
     <link rel="icon" href="../assets/favicons/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="../assets/favicons/apple-touch-icon.png" type="image/x-icon" />
     <link rel="icon" href="../assets/favicons/apple-touch-icon.png" type="image/x-icon" />
-    <script src="../util.js" defer></script> <!-- ! -->
+    <script src="../util.js" defer></script>
+    <script src="index.js" defer></script>
     <title>VR Charity</title>
 </head>
 
 <body>
     <header class="collapsed">
         <div id="link-container">
-            <a aria-disabled="true" class="header-link">VR Charity</a>
-            <a id="skip-link" href="./#main-logo" class="no-title">Skip Navigation</a>
+            <a href="../index.html" class="header-link">VR Charity</a>
+            <a id="skip-link" href="./#donation-container" class="no-title">Skip Navigation</a>
             <a href="../index.html" class="header-link">Home</a>
-            <a href="../donate/index.html" class="header-link">Donate</a>
+            <a href="./" class="header-link">Donate</a>
             <a href="../teams/index.html" class="header-link">Teams</a>
-            <a href="" class="header-link">Register</a>
+            <a href="../register/index.html" class="header-link">Register</a>
             <a href="" class="header-link">Events</a>
             <a href="" class="header-link">Rules</a>
             <a href="" class="header-link">Partners</a>
             <a href="https://discord.gg/sShjcHKaGB" class="header-link">Discord</a>
-            <a href="../contact/index.html" class="header-link">Contact us</a>
+            <a href="../contact/index.html" class="header-link">Contact</a>
             <a href="" class="header-link">Login</a>
         </div>
     </header>
     <main>
-        
+        <div id="donation-container">
+            <a id="no-donation" class="donation-prompt">There aren't any active tournaments right now…</a>
+        </div>
     </main>
     <footer>
         <div id="quick-links">
             Quick links:<br>
             <a href="../index.html" class="footer-link">Home</a>
-            <a href="../donate/index.html" class="footer-link">Donate</a>
-            <a href="../temas/index.html" class="footer-link">Teams</a>
-            <a href="" class="footer-link">Register</a>
+            <a href="./" class="footer-link">Donate</a>
+            <a href="../teams/index.html" class="footer-link">Teams</a>
+            <a href="../register/index.html" class="footer-link">Register</a>
             <a href="" class="footer-link">Events</a>
             <a href="" class="footer-link">Rules</a>
             <a href="" class="footer-link">Partners</a>
             <a href="https://discord.gg/sShjcHKaGB" class="footer-link">Discord</a>
-            <a href="../contact/index.html" class="footer-link">Contact us</a>
+            <a href="../contact/index.html" class="footer-link">Contact</a>
             <a href="" class="footer-link">Login</a>
         </div>
         <p id="info">
-            VRCharity website v0.2.0.5 (build 9)<br>
-            Last built: October 13th 2022<br>
-            Last updated: October 13th 2022<br>
+            VRCharity website v0.2.0.6 (build 10)<br>
+            Last built: October 15th 2022<br>
+            Last updated: October 15th 2022<br>
             Designed by eiπ#5267
         </p>
     </footer>

@@ -1,5 +1,10 @@
 # VR Charity website build changelog
 
+## v0.2.0.6 (10/25/2022)
+- Continued experimenting with database schemas
+- Started backend work
+- Fixed a link
+
 ## v0.2.0.5 (10/24/2022)
 - Updated some data
 - Made some stuff change color on hover

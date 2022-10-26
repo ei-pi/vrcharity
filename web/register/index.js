@@ -248,8 +248,8 @@
             [
                 {
                     name: "Stack Up 2021",
-                    date: new Date("2021-09-04"),
-                    prize: "$2000+",
+                    date: new Date("2021-09-04T14:00-05:00"),
+                    prize: "$3000+",
                     registration: [
                         new Date("2021-06-11"),
                         new Date("2021-07-31")

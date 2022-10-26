@@ -5,29 +5,30 @@ type Pointer<T extends { readonly ID: unknown; }> = T["ID"];
 type link = string;
 type email = `mailto:${string}`;
 type JSONDate = string; // The result of Date.prototype.toJSON()
+type nullptr = -1;
 
 interface Basic {
     name: string;
-    readonly ID: number;
+    ID: number;
 }
 
 interface User extends Basic {
-    private password: string;
+    password: string;
     permissions: number;
-}
-
-interface Player extends User {
-    team: Pointer<Team>;
+    teams: Pointer<Team>[];
+    activeTeam: { readonly [key: `${Pointer<Tournament>}`]: Pointer<Team>; };
+    verified: { readonly [key: `${Pointer<Tournament>}`]: boolean; };
 }
 
 interface Team extends Basic {
-    members: Pointer<Player>[];
-    captain: Pointer<Player>;
-    tourneys: Pointer<Entry>[];
+    reserves: Pointer<User>[];
+    members: Pointer<User>[];
+    captain: Pointer<User>;
+    tourneys: Entry[];
 }
 
 interface Entry {
-    verified: true | { readonly [key: Pointer<Player>]: boolean; };
+    verified: true | { readonly [key: Pointer<User>]: boolean; };
     bracket: Pointer<Bracket>;
     tournament: Pointer<Tournament>;
 }
@@ -39,11 +40,12 @@ interface Bracket extends Basic {
 
 interface Tournament extends Basic {
     game: Pointer<Game>;
-    brackets: Pointer<Bracket>[];
+    brackets: Bracket[];
 
     get open(): boolean;
     get passed(): boolean;
 
+    rules: link;
     prize: string;
     format: string;
     charity: Pointer<Charity>;
@@ -62,9 +64,11 @@ interface News extends Basic {
     date: JSONDate;
 }
 
-interface Sponsor extends Basic {
+interface Sponsor {
+    name: string;
     image: link;
     link: link;
+    backgroundColor: string;
 }
 
 interface Charity extends Basic {
@@ -75,5 +79,15 @@ interface Charity extends Basic {
 interface Contact {
     name: string;
     title: string;
-    address: email;
+    email: email;
+}
+export interface DB {
+    users: User[];
+    teams: Team[];
+    tournaments: Tournament[];
+    games: Game[];
+    charities: Charity[];
+    news: News[];
+    sponsors: Sponsor[];
+    contacts: Contact[];
 }
